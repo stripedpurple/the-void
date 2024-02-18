@@ -1,6 +1,16 @@
 import './assets/main.css'
 
-import { createApp } from 'vue'
+import {createApp, nextTick} from 'vue'
 import App from './App.vue'
 
-createApp(App).mount('#app')
+const app = createApp(App)
+
+app.directive('focus', {
+    mounted: async (el) => {
+        await nextTick()
+        return el.focus()
+    },
+})
+
+
+app.mount('#app')
